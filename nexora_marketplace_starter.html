@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111827">
+<title>NEXORA — Your Digital Marketplace</title>
+<style>
+:root{--bg:#f6f7fb;--ink:#111827;--muted:#667085;--brand:#6d28d9;--brand2:#8b5cf6;--line:#e5e7eb;--card:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:#111827;color:white;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:5}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.08em}.logo-mark{background:var(--brand);width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:22px}
+nav{display:flex;gap:18px;align-items:center}nav a{color:#e5e7eb;text-decoration:none;font-size:14px}.cart{border:1px solid #4b5563;background:#1f2937;color:white;border-radius:12px;padding:9px 12px}
+main{max-width:1100px;margin:auto;padding:26px 18px 50px}
+.hero{background:linear-gradient(125deg,#17152f,#312064 60%,#6d28d9);color:white;border-radius:24px;padding:34px 28px;display:grid;grid-template-columns:1.5fr 1fr;gap:20px;align-items:center;overflow:hidden}
+.eyebrow{color:#ddd6fe;font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase}
+h1{font-size:clamp(32px,5vw,52px);line-height:1.05;margin:12px 0}.hero p{color:#e9e5ff;max-width:520px;line-height:1.65}
+.hero-art{min-height:180px;display:grid;place-items:center;font-size:100px;filter:drop-shadow(0 12px 20px #0004)}
+.primary{background:#fff;color:#4c1d95;border:0;border-radius:12px;padding:12px 17px;font-weight:800;cursor:pointer}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:30px 0 14px}.section-head h2{margin:0;font-size:24px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:14px}
+.search{width:100%;max-width:290px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit;background:white}
+.categories{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0 18px}.chip{border:1px solid var(--line);background:white;border-radius:999px;padding:9px 14px;cursor:pointer}.chip.active{background:#ede9fe;color:#5b21b6;border-color:#c4b5fd}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.product{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px;display:flex;flex-direction:column;gap:10px;min-height:210px}.product-icon{width:48px;height:48px;background:#f3e8ff;border-radius:14px;display:grid;place-items:center;font-size:25px}.product h3{margin:0;font-size:17px}.product p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}.product-bottom{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px}.price{font-weight:900}.add{border:0;background:var(--brand);color:white;border-radius:10px;padding:10px 12px;font-weight:700;cursor:pointer}
+.notice{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;color:#475467;font-size:13px;line-height:1.6}
+footer{border-top:1px solid var(--line);padding:24px 18px;text-align:center;color:var(--muted);font-size:13px}
+dialog{border:0;border-radius:20px;padding:0;width:min(520px,calc(100% - 28px));box-shadow:0 20px 70px #0003}dialog::backdrop{background:#11182799}.modal{padding:23px}.modal h2{margin-top:0}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:13px;font-weight:700}.field input,.field textarea,.field select{font:inherit;padding:11px;border:1px solid var(--line);border-radius:10px;width:100%}.modal-actions{display:flex;gap:10px;margin-top:16px}.secondary{border:1px solid var(--line);background:white;border-radius:10px;padding:11px 14px;cursor:pointer}.primary-dark{background:var(--brand);color:white;border:0;border-radius:10px;padding:11px 14px;font-weight:800;cursor:pointer;flex:1}
+@media(max-width:700px){nav a{display:none}.hero{grid-template-columns:1fr;padding:27px 22px}.hero-art{min-height:80px;font-size:62px}.section-head{align-items:stretch;flex-direction:column}.search{max-width:none}.products{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:440px){.products{grid-template-columns:1fr}.product{min-height:175px}header{padding:12px 16px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><span class="logo-mark">✦</span><span>NEXORA</span></div>
+  <nav><a href="#products">Marketplace</a><a href="#about">How it works</a><button class="cart" id="cartBtn">🛍 Cart (<span id="cartCount">0</span>)</button></nav>
+</header>
+<main>
+  <section class="hero">
+    <div><div class="eyebrow">Your world. One market.</div><h1>Everything digital.<br>One destination.</h1><p>Explore data bundles, airtime and useful digital services — all in one simple marketplace.</p><button class="primary" onclick="document.querySelector('#products').scrollIntoView({behavior:'smooth'})">Explore products&nbsp; →</button></div>
+    <div class="hero-art" aria-hidden="true">📱✨</div>
+  </section>
+  <section id="products">
+    <div class="section-head"><div><h2>Explore the marketplace</h2><p>Starter catalogue — sample items only, not live offers yet.</p></div><input class="search" id="search" placeholder="Search products…" aria-label="Search products"></div>
+    <div class="categories" id="categories">
+      <button class="chip active" data-cat="All">All products</button><button class="chip" data-cat="Data">Data bundles</button><button class="chip" data-cat="Airtime">Airtime</button><button class="chip" data-cat="Digital">Digital services</button>
+    </div>
+    <div class="products" id="productGrid"></div>
+  </section>
+  <section id="about" class="notice"><strong>How it works</strong><br>1. Choose a product. 2. Add it to your cart. 3. Send an order request for confirmation. <strong>Online payment is not connected yet.</strong> We will add a verified Mobile Money checkout after choosing a payment provider and completing any required account verification.</section>
+</main>
+<footer>© <span id="year"></span> NEXORA. Built step by step. <br>Prices, networks and availability must be confirmed before launch.</footer>
+<dialog id="checkout">
+  <div class="modal">
+    <h2 id="modalTitle">Your order</h2><p id="cartSummary" style="color:#667085;font-size:14px;line-height:1.5"></p>
+    <form id="orderForm">
+      <div class="field"><label for="customerName">Your name</label><input id="customerName" required placeholder="Enter your name"></div>
+      <div class="field"><label for="customerPhone">Phone number for delivery/contact</label><input id="customerPhone" required inputmode="tel" placeholder="e.g. 0XX XXX XXXX"></div>
+      <div class="field"><label for="network">Preferred network (if applicable)</label><select id="network"><option>Not applicable</option><option>MTN</option><option>Telecel</option><option>AT</option></select></div>
+      <div class="field"><label for="notes">Order notes (optional)</label><textarea id="notes" rows="2" placeholder="Product size or other details"></textarea></div>
+      <p style="font-size:12px;color:#667085;line-height:1.5">Demo only: this form does not take payment or send data automatically. It will prepare an order summary you can copy.</p>
+      <div class="modal-actions"><button type="button" class="secondary" id="closeModal">Cancel</button><button type="submit" class="primary-dark">Prepare order</button></div>
+    </form>
+    <div id="orderResult" hidden><textarea id="orderText" rows="7" readonly style="width:100%;margin-top:12px;padding:10px;border:1px solid #ddd;border-radius:10px"></textarea><button type="button" class="primary-dark" id="copyOrder" style="margin-top:10px;width:100%">Copy order summary</button></div>
+  </div>
+</dialog>
+<script>
+const products = [
+ {id:1,name:"Data Bundle",category:"Data",icon:"📶",description:"Choose your network and preferred data size.",price:"Price to confirm"},
+ {id:2,name:"Airtime Top-up",category:"Airtime",icon:"📲",description:"Request an airtime top-up for a supported network.",price:"Amount to choose"},
+ {id:3,name:"Digital Services",category:"Digital",icon:"💻",description:"A place for future digital services and products.",price:"Coming soon"},
+ {id:4,name:"Daily Data",category:"Data",icon:"⚡",description:"Sample listing. Bundle size and price are not set yet.",price:"Price to confirm"},
+ {id:5,name:"Weekly Data",category:"Data",icon:"🗓️",description:"Sample listing. Confirm current network offers first.",price:"Price to confirm"},
+ {id:6,name:"Gift & Digital Codes",category:"Digital",icon:"🎁",description:"Future category for legitimate digital products.",price:"Coming soon"}
+];
+let cart=[];let category="All";
+const grid=document.getElementById("productGrid");
+function render(){const term=document.getElementById("search").value.toLowerCase();const list=products.filter(p=>(category==="All"||p.category===category)&&(p.name+" "+p.description).toLowerCase().includes(term));grid.innerHTML=list.map(p=>`<article class="product"><div class="product-icon">${p.icon}</div><h3>${p.name}</h3><p>${p.description}</p><div class="product-bottom"><span class="price">${p.price}</span><button class="add" data-add="${p.id}">Add</button></div></article>`).join("")||"<p>No products match your search.</p>";document.getElementById("cartCount").textContent=cart.length;}
+grid.addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(!b)return;cart.push(products.find(p=>p.id===Number(b.dataset.add)));render();b.textContent="Added ✓";setTimeout(()=>{if(b.isConnected)b.textContent="Add"},900)});
+document.getElementById("search").addEventListener("input",render);
+document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{category=b.dataset.cat;document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x===b));render()}));
+const dlg=document.getElementById("checkout");
+function openCart(){document.getElementById("modalTitle").textContent=cart.length?"Your order":"Your cart is empty";document.getElementById("cartSummary").textContent=cart.length?cart.map((p,i)=>`${i+1}. ${p.name} — ${p.price}`).join("\n"):"Add a product to start an order.";document.getElementById("cartSummary").style.whiteSpace="pre-line";document.getElementById("orderResult").hidden=true;document.getElementById("orderForm").hidden=!cart.length;dlg.showModal()}
+document.getElementById("cartBtn").addEventListener("click",openCart);document.getElementById("closeModal").addEventListener("click",()=>dlg.close());
+document.getElementById("orderForm").addEventListener("submit",e=>{e.preventDefault();const lines=cart.map((p,i)=>`${i+1}. ${p.name} (${p.price})`).join("\n");const text=`NEXORA ORDER REQUEST\nName: ${document.getElementById("customerName").value}\nContact: ${document.getElementById("customerPhone").value}\nNetwork: ${document.getElementById("network").value}\nItems:\n${lines}\nNotes: ${document.getElementById("notes").value||"None"}\n\nPlease confirm availability and final price. Payment has not been made.`;document.getElementById("orderText").value=text;document.getElementById("orderResult").hidden=false;});
+document.getElementById("copyOrder").addEventListener("click",async()=>{const t=document.getElementById("orderText");try{await navigator.clipboard.writeText(t.value);document.getElementById("copyOrder").textContent="Copied ✓"}catch{t.select();document.execCommand("copy");document.getElementById("copyOrder").textContent="Select and copy if needed"}});
+document.getElementById("year").textContent=new Date().getFullYear();render();
+</script>
+</body>
+</html>
